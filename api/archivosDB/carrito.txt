@@ -1,0 +1,15 @@
+[
+  {
+    "idCarrito": 0.3622920318762617
+  },
+  {
+    "name": "Calculadora",
+    "price": 200,
+    "id": 1,
+    "stock": 1,
+    "description": "Calculadora.",
+    "img": "https://http2.mlstatic.com/D_NQ_NP_922410-MLA43556276077_092020-W.webp",
+    "quantity": 1,
+    "timestamp": 1664480748795
+  }
+]
