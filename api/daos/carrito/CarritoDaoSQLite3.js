@@ -1,51 +1,25 @@
-const fs = require("fs");
-const ContenedorArchivo = require("../../contenedores/ContenedorArchivo.js");
+const ContenedorSQL = require("../../contenedores/ContenedorSQL.js");
 
-class CarritoDaoArchivos extends ContenedorArchivo {
-  constructor() {
-    super("./archivosDB/carrito.txt");
+class CarritoDaoSQL {
+  constructor(configCarrito, configProds) {
+    this.carrito = new ContenedorSQL(configCarrito, "carrito");
+    this.prodsEnCarrito = new ContenedorSQL(configProds, "prodsEnCarrito");
   }
-  async save(obj) {
+  async save(carrito = {}) {
     try {
-      let data = await this.readFileFunction("./archivosDB/carrito.txt");
-      const indexed = data.findIndex((el) => el.id === obj.id);
-      console.log(indexed);
-
-      const timeStamp = Date.now();
-      if (data.length) {
-        await fs.promises.writeFile(
-          this.url,
-          JSON.stringify(
-            [
-              ...data,
-              {
-                ...obj,
-                id: data[data.length - 1].id + 1,
-                quantity: 1,
-                timestamp: timeStamp,
-              },
-            ],
-            null,
-            2
-          )
-        );
-      } else {
-        await fs.promises.writeFile(
-          this.url,
-          JSON.stringify(
-            [
-              { idCarrito: Math.random() },
-              { ...obj, id: 1, quantity: 1, timestamp: timeStamp },
-            ],
-            null,
-            2
-          )
-        );
-      }
+      const res = await this.carrito.save(carrito);
+      res.productos = [];
+      return res;
     } catch (error) {
       console.log(error);
     }
   }
-}
 
+  async getAll() {
+    await this.carrito.getAll();
+    const res = {
+      productos: [],
+    };
+  }
+}
 module.exports = CarritoDaoArchivos;
