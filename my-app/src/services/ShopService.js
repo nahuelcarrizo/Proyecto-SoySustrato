@@ -28,3 +28,14 @@ export async function updateItem(item) {
   });
   return await response.json();
 }
+
+export async function deleteItem(item) {
+  const response = await fetch(`/api/productos/:${item.id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(item),
+  });
+  return await response.json();
+}

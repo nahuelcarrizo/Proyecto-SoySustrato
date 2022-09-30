@@ -15,7 +15,11 @@ async function trySwitch() {
       productosDao = new ProductosDaoMongoDB();
       carritoDao = new CarritoDaoMongoDB();
       break;
-
+    case "mariadb":
+      const ProductosDaoMariaDB = require("../daos/productos/ProductosDaoMariaDB.js");
+      const CarritoDaoMariaDB = require("../daos/carrito/CarritoDaoMariaDB.js");
+      productosDao = new ProductosDaoMariaDB();
+      carritoDao = new CarritoDaoMariaDB();
     default:
       break;
   }

@@ -1,7 +1,6 @@
 const { response } = require("express");
 
 const { carritoDao } = require("../daos/index.js");
-/* const routerCarrito = require("../routes/carrito.routes.js"); */
 
 const getProducts = async (req, res = response) => {
   try {
@@ -14,6 +13,7 @@ const getProducts = async (req, res = response) => {
 
 const buyItem = async (req, res = response) => {
   try {
+    console.log("buyitem");
     const item = req.body;
     carritoDao.save(item);
   } catch (error) {

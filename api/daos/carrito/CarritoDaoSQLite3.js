@@ -5,6 +5,7 @@ class CarritoDaoSQL {
     this.carrito = new ContenedorSQL(configCarrito, "carrito");
     this.prodsEnCarrito = new ContenedorSQL(configProds, "prodsEnCarrito");
   }
+
   async save(carrito = {}) {
     try {
       const res = await this.carrito.save(carrito);

@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { MyCart } from "../../context/CartContext";
 import { MyUser } from "../../context/UserContext";
 
-export const Products = ({ prods, addItem, updateItem }) => {
+export const Products = ({ prods, addItem, updateItem, deleteItem }) => {
   const { addQuant } = useContext(MyCart);
   const { isLog } = useContext(MyUser);
   if (prods === undefined) return null;
@@ -13,6 +13,10 @@ export const Products = ({ prods, addItem, updateItem }) => {
   };
   const handleUpdate = (prod) => {
     updateItem(prod);
+  };
+  const handleDelete = (prod) => {
+    console.log("products");
+    deleteItem(prod);
   };
 
   const ProdRow = (prod, index) => {
@@ -34,12 +38,20 @@ export const Products = ({ prods, addItem, updateItem }) => {
             Comprar
           </button>
           {isLog && (
-            <button
-              onClick={() => handleUpdate(prod)}
-              className="btn btn-info m-2"
-            >
-              Actualizar
-            </button>
+            <>
+              <button
+                onClick={() => handleUpdate(prod)}
+                className="btn btn-info m-2"
+              >
+                Actualizar
+              </button>
+              <button
+                onClick={() => handleDelete(prod)}
+                className="btn btn-warning m-2"
+              >
+                Eliminar
+              </button>
+            </>
           )}
         </td>
       </tr>

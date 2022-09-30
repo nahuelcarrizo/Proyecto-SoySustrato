@@ -1,5 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import { buyItem, getAll, updateItem } from "../../services/ShopService";
+import {
+  buyItem,
+  deleteItem,
+  getAll,
+  updateItem,
+} from "../../services/ShopService";
 
 import LoginUser from "./LoginUser";
 import { MyUser } from "../../context/UserContext";
@@ -27,6 +32,9 @@ export default function Shop() {
   };
   const handleUpdate = (item) => {
     updateItem(item);
+  };
+  const handleDelete = (item) => {
+    deleteItem(item);
   };
 
   useEffect(() => {
@@ -69,6 +77,7 @@ export default function Shop() {
           prods={prods}
           addItem={handleBuy}
           updateItem={handleUpdate}
+          deleteItem={handleDelete}
         ></Products>
       </div>
     </>
